@@ -1,7 +1,5 @@
 package romantointeger
 
-import java.lang.Exception
-
 class Solution {
     fun romanToInt(s: String): Int {
         val romans = hashMapOf(
@@ -18,7 +16,7 @@ class Solution {
         var prev = 0
         for (i in s.lastIndex downTo 0) {
             val curr = romans[s[i]]!!
-            if(curr >= prev) answer += curr
+            if (curr >= prev) answer += curr
             else answer -= curr
             prev = curr
         }
