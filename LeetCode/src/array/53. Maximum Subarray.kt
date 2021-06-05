@@ -2,7 +2,6 @@ package maximumsubarray
 
 class Solution {
     fun maxSubArray(nums: IntArray): Int {
-        val d = Array(nums.size) { 0 }
         var sum = nums.first()
         var max = sum
 
