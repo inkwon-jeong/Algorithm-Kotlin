@@ -44,7 +44,7 @@ class Trie() {
         return true
     }
 
-    class Node(val c: Char, val isLast: Boolean = false) {
+    class Node(val c: Char, var isLast: Boolean = false) {
         private val children = mutableMapOf<Char, Node>()
 
         fun get(c: Char): Node? {
@@ -52,8 +52,11 @@ class Trie() {
         }
 
         fun put(c: Char, isLast: Boolean = false) {
-            if(get(c) == null || isLast)
-                children[c] = Node(c, isLast)
+            if(get(c) == null)
+                children[c] = Node(c)
+
+            if(isLast)
+                get(c)?.isLast = true
         }
     }
 }
