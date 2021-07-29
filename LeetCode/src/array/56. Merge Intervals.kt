@@ -9,7 +9,7 @@ class Solution {
 
         var (start, end) = sorted[0]
 
-        sorted.forEachIndexed { index, (nextStart, nextEnd) ->
+        sorted.forEach { (nextStart, nextEnd) ->
             if(end >= nextStart) {
                 end = max(end, nextEnd)
             } else {
