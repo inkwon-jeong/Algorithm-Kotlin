@@ -15,22 +15,37 @@ class Solution {
     private val answer = mutableListOf<List<Int>>()
 
     fun pathSum(root: TreeNode?, targetSum: Int): List<List<Int>> {
+        if (root == null)
+            return emptyList()
+
         pathSum(root, targetSum, 0, mutableListOf())
         return answer
     }
 
-    private fun pathSum(node: TreeNode?, targetSum: Int, sum: Int, vals: MutableList<Int>) {
-        if (node == null) {
-            if(sum == targetSum) {
+    private fun pathSum(node: TreeNode, targetSum: Int, sum: Int, vals: MutableList<Int>) {
+        val left = node.left
+        val right = node.right
+
+        if (left == null && right == null) {
+            if (sum + node.`val` == targetSum) {
+                vals.add(node.`val`)
                 answer.add(vals.toList())
+                vals.removeAt(vals.lastIndex)
             }
             return
         }
 
-        vals.add(node.`val`)
-        pathSum(node.left, targetSum, sum + node.`val`, vals)
-        pathSum(node.right, targetSum, sum + node.`val`, vals)
-        vals.removeAt(vals.lastIndex)
+        if (left != null) {
+            vals.add(node.`val`)
+            pathSum(left, targetSum, sum + node.`val`, vals)
+            vals.removeAt(vals.lastIndex)
+        }
+
+        if (right != null) {
+            vals.add(node.`val`)
+            pathSum(right, targetSum, sum + node.`val`, vals)
+            vals.removeAt(vals.lastIndex)
+        }
     }
 }
 
