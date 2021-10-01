@@ -3,13 +3,13 @@ package decodestring
 import java.util.*
 
 class Solution {
-    fun decodeString(s: String): String? {
+    fun decodeString(s: String): String {
         val queue: Deque<Char> = LinkedList()
         for (c in s.toCharArray()) queue.offer(c)
         return decodeString(queue)
     }
 
-    fun decodeString(queue: Deque<Char>): String {
+    private fun decodeString(queue: Deque<Char>): String {
         val sb = StringBuilder()
         var num = 0
         while (!queue.isEmpty()) {
